@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "structs.h"//this is a header file I made//
+#include <unistd.h>
+
+
+int main(){
+
+
+
+	  int i,n;
+
+    printf("How many players are there? max = 6\n");
+    fflush(stdout);//fixes the eclipse bug//
+    scanf("%d", &n);
+    puts("");
+
+
+        for(i=0;i<n;i++){
+
+
+        	printf("Enter the characters name\n");
+        	fflush(stdout);
+        	scanf("%s", &player[i].name);//assigning the string to a character array in the struct//
+        	printf("Choose its class\n");
+        	fflush(stdout);
+        	scanf("%s", &player[i].player_class);//assigning a player class to the struct//
+        	puts("");//prints a space//
+        }
+
+        int life = 100;
+        for(i=0;i<n;i++){
+        	  printf("Player[%d]:\n %s (%s, %d)\n", i+1, player[i].name, player[i].player_class, life );//printing out all the values//
+            fflush(stdout);
+            puts("");
+}
+}
+
+
+
+
+
