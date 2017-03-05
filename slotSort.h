@@ -1,40 +1,61 @@
-void slotFill(int slotCount, char slotArr[20][100]);
-void slotAssign(int playerCount, int slotCount, char slotArr[20][100], char player.slotType[6][100], int player.slotNum[6][100]);
+/*
+ * slots.h
 
-void slotFill(int slotCount, char slotArr[20][100])
-{
-	int x, m;
+ *
+ *  Created on: 3 Mar 2017
+ *      Author: kiowa + lorenzo
+ */
+#ifndef SLOTS_H
+#define SLOTS_H
+#include <time.h>
+#include <stdlib.h>
+#include <string.h>
+#include "structs.h"
+
+void slotFill(int slotCount);
+void slotAssign(int playerCount, int slotCount,struct players_ player[]);
+
+void slotFill(int slotCount){
+
+
+	int i, r;
 
 	srand(time(NULL)); // start random number generator with time from CPU as source
-	
-	for(x = 0; x < slotCount; x++){
-		m = rand() % 3; // random number between 0 and 2
-		switch(m){
-			case 0: strcpy(slotArr[x], "Ground\n"); break;
-			case 1: strcpy(slotArr[x], "Hill\n"); break;
-			case 2: strcpy(slotArr[x], "City\n"); break;
+
+	for(i = 0; i < slotCount; i++){
+
+		r = rand() % 3; // random number between 0 and 2
+		switch(r){
+			case 0: player[i].slotType = 0; break;
+			case 1: player[i].slotType = 1; break;
+			case 2: player[i].slotType = 2; break;
 		}
-	}		
+	}
 }
 
-void slotAssign(int playerCount, int slotCount, char slotArr[20][100], char player.slotType[6][100], int player.slotNum[6][100])
-{
-	int x, y;
-	int i;
-	int check[6];
-	
+void slotAssign(int playerCount, int slotCount,struct players_ player[]){
+
+	int i, j;
+	int x;
+	int temp[7];
+
 	srand(time(NULL));
-	
-	for(x = 0; x < playerCount; x++){
-		i = rand() % slotCount;
-		for(y = 0; y < playerCount; y++){
-			while(check[y] == i){
-				i = rand() % slotCount;
+
+	for(i = 0; i < playerCount; i++){
+		x = rand() % slotCount;
+		for(j = 0; j < playerCount; j++){
+			while(temp[j] == x){
+				x = rand() % slotCount + 1;
 			}
 		}
-		strcpy(player[x].slotType, slotArr[i]);
-		player[x].slotNum = i + 1;
-		check[x] = i;
+		player[i].slotNum = x + 1;
+		temp[i] = x;
 	}
-	
+
 }
+#endif
+
+
+
+
+
