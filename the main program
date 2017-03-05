@@ -3,41 +3,149 @@
 #include <stdlib.h>
 #include "structs.h"//this is a header file I made//
 #include <unistd.h>
+#include "slots.h"
+#include <time.h>
+
+
 
 
 int main(){
 
 
-
-	  int i,n;
+    srand(time(NULL));
+	int i,playerCount, slotCount, choice;//erged both our variables//
 
     printf("How many players are there? max = 6\n");
     fflush(stdout);//fixes the eclipse bug//
-    scanf("%d", &n);
+    scanf("%d", &playerCount);
     puts("");
+    printf("How many Slots do you want\n");
+    fflush(stdout);
+    scanf("%d", &slotCount);
 
-
-        for(i=0;i<n;i++){
+        for(i=0;i<playerCount;i++){//I refer using i in for loops but feel free to change it when you modify the code //
 
 
         	printf("Enter the characters name\n");
         	fflush(stdout);
         	scanf("%s", &player[i].name);//assigning the string to a character array in the struct//
-        	printf("Choose its class\n");
+        	printf("Choose its class\n0:Ogre\n1:Wizard\n2:Elf\n3:Human\n");
         	fflush(stdout);
-        	scanf("%s", &player[i].player_class);//assigning a player class to the struct//
+        	scanf("%d", &choice);
+        	//assigning a player class to the struct//
+
+
+        	switch(choice){
+
+        		case(0):{
+        			player[i].class = 0;
+        			break;
+        		}
+        		case(1):{
+        			player[i].class = 1;
+        			break;
+        		}
+        		case(2):{
+        			player[i].class = 2;
+        			break;
+        		}
+        		case(3):{
+        			player[i].class = 3;
+        			break;
+        		}
+        	}
+
         	puts("");//prints a space//
         }
+        slotFill(slotCount);
+        slotAssign(playerCount, slotCount, player);
 
+
+        //printing out the name and abilities//
         int life = 100;
-        for(i=0;i<n;i++){
-        	  printf("Player[%d]:\n %s (%s, %d)\n", i+1, player[i].name, player[i].player_class, life );//printing out all the values//
+        for(i=0;i<playerCount;i++){
+        	printf("Player[%d]:\n%s\t", i+1, player[i].name);
+        	if(player[i].class == Ogre){
+        		player[i].smartness = rand()%20;
+        	    player[i].Luck = 50 - player[i].smartness;
+        	    player[i].strength = rand()%20;
+        	    player[i].magic_Skills = 0;
+        	    player[i].Dexterity = 80 + rand()%20;
+        	    printf("(Ogre , %d)\n", life);
+        	    printf("Smartness: %d\n", player[i].smartness);
+        	    printf("Luck: %d\n",player[i].Luck);
+        	    printf("Strength: %d\n", player[i].strength);
+        	    printf("Magica: %d\n", player[i].magic_Skills);
+        	    printf("Dexterity: %d\n", player[i].Dexterity);
+        	    puts("");
+
+        			}
+        	else if(player[i].class == Wizard){
+        		player[i].smartness =  90 + rand()%10;
+        		player[i].Luck = 50 + rand()%50;
+        		player[i].strength = rand()%20;
+        		player[i].magic_Skills = 80 + rand()%20;
+        		player[i].Dexterity = rand()%100;
+        		printf("(Wizard, %d)\n", life);
+        		printf("Smartness: %d\n", player[i].smartness);
+        		printf("Luck: %d\n",player[i].Luck);
+                printf("Strength: %d\n", player[i].strength);
+        		printf("Magica: %d\n", player[i].magic_Skills);
+        		printf("Dexterity: %d\n", player[i].Dexterity);
+        		puts("");
+        	}
+        	else if(player[i].class == Elf){
+        		player[i].smartness = 70 + rand()%30;
+        	    player[i].Luck = 60 + rand()%40;
+        	    player[i].strength = rand()%50;
+        	    player[i].magic_Skills = 50 + rand()%30;
+        	    player[i].Dexterity = rand()%100;
+        		printf("(Elf, %d)\n", life);
+        		printf("Smartness: %d\n", player[i].smartness);
+                printf("Luck: %d\n",player[i].Luck);
+        	    printf("Strength: %d\n", player[i].strength);
+        		printf("Magica: %d\n", player[i].magic_Skills);
+        		printf("Dexterity: %d\n", player[i].Dexterity);
+        		puts("");
+        	}
+        	else if(player[i].class == Human){
+                while(1){
+                	player[i].smartness = rand()%100;
+                	player[i].Luck = rand()%100;
+                	player[i].strength = rand()%100;
+                	player[i].magic_Skills = rand()%100;
+                	player[i].Dexterity = rand()%100;
+                	if(player[i].smartness + player[i].Luck +player[i].strength +player[i].magic_Skills +player[i].Dexterity < 300){
+                		break;
+                	}
+                }
+
+
+        		printf("(Human, %d)\n", life);
+        		printf("Smartness: %d\n", player[i].smartness);
+        		printf("Luck: %d\n",player[i].Luck);
+        		printf("Strength: %d\n", player[i].strength);
+        		printf("Magica: %d\n", player[i].magic_Skills);
+        	    printf("Dexterity: %d\n", player[i].Dexterity);
+
+        	    puts("");
+        	}
+
             fflush(stdout);
+            printf("%s is at %d", player[i].name, player[i].slotNum);
+            if(player[i].slotType == ground){
+            	printf("  ground\n");
+            }
+            else if(player[i].slotType == hill){
+            	printf("  hill\n");
+            }
+            else if(player[i].slotType == city){
+            	printf("  city\n");
+            }
             puts("");
+
+        }
+
+
+
 }
-}
-
-
-
-
-
