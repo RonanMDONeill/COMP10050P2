@@ -27,22 +27,46 @@ int main(void){
 	
 	for(x = 0; x < playerCount; x++){
 		
-		movePlayer(playerCount, slotCount, player, slotArr, &opt, x); // calling function which asks what a player wants to do
+		movePlayer(playerCount, slotCount, player, slotArr, &opt, x);
 
 		switch(opt){ // switch statement
-			case 1: strcpy(temp, slotArr[player[x].slotNum + 1]); // wanting to move forwards
+			case 1: strcpy(temp, slotArr[player[x].slotNum + 1]);
 					if(temp == "ground"){ // replace current slot type with one ahead of it
 						player[x].slotType = 1;
 					}
 					else if(temp == "hill"){
+						if(player[i].Dexterity < 50){
+							player[i].strength -= 10;
+							if(player[i].strength < 0){
+								player[i].strength = 0;
+							}
+						}
+						else if(player[i].Dexterity >= 60){
+							player[i].strength += 10;
+							if(player[i].strength > 100){
+								player[i].strength = 100;
+							}
+						}
 						player[x].slotType = 2;
 					}
 					else if(temp == "city"){
+						if(player[i].smartness > 50){
+							player[i].magic_Skills += 10;
+							if(player[i].magic_Skills > 100){
+								player[i].magic_Skills = 100;
+							}
+						}
+						else if(player[i].smartness <= 50){
+							player[i].Dexterity -= 10;
+							if(player[i].Dexterity < 0){
+								player[i].Dexterity = 0;
+							}
+						}
 						player[x].slotType = 3;
 					} 
 					player[x].slotNum += 1; break; // increase the slot number by one
 					
-			case 2: strcpy(temp, slotArr[player[x].slotNum - 1]); // wanting to move backwards
+			case 2: strcpy(temp, slotArr[player[x].slotNum - 1]);
 					if(temp == "ground"){ // replace current slot type with one behind of it
 						player[x].slotType = 1;
 					}
@@ -54,14 +78,14 @@ int main(void){
 					} 
 					player[x].slotNum -= 1; break; // decrease slot number by one
 					
-			case 3: closest = 30; // wanting to attack
+			case 3: closest = 30;
 					diff = 30;
 					track1 = 30;
 					track2 = 30;
 					mark = 5;
 					for(z = 0; z < playerCount; z++){ // find closest player(s)
 						diff = abs(player[x].slotNum - player[z].slotNum); // absolute value of the difference between players
-						if(diff == 0){ // so you cannot attack yourself
+						if(diff == 0){
 							diff = 30;
 						}
 						
@@ -76,15 +100,15 @@ int main(void){
 						}
 					}
 					
-					if(mark == 1){ // only one closest
-						if(player[track1].strength <= 70){ // criteria for an attack (from (d))
+					if(mark == 1){
+						if(player[track1].strength <= 70){
 							player[track1].life -=  (0.5) * player[track1].strength;
 						}
 						else if(player[track1].strength > 70){
 							player[x].life -= (0.3) * player[track1].strength;
 						}
 					}
-					else if(mark == 2){ // two closest
+					else if(mark == 2){
 						printf("There are two closest players.\nWould you like to attack:\n1. %s (Strength = %d LP = %.0f)?\n2.%s (Strength = %d LP = %.0f)?\n", player[track1].name, player[track1].strength, player[track1].life, player[track2].name, player[track2].strength, player[track2].life);
 						scanf("%d", &choice);
 						while(choice < 1 || choice > 2){
@@ -92,7 +116,7 @@ int main(void){
 							scanf("%d", &choice);
 						}
 						
-						if(choice == 1){ // player 1
+						if(choice == 1){
 							if(player[track1].strength <= 70){
 								player[track1].life -=  (0.5) * player[track1].strength;
 							}
@@ -100,7 +124,7 @@ int main(void){
 								player[x].life -= (0.3) * player[track1].strength;
 							}
 						}
-						else if(choice == 2){ // player 2
+						else if(choice == 2){
 							if(player[track2].strength <= 70){
 								player[track2].life -=  (0.5) * player[track2].strength;
 							}
@@ -112,7 +136,7 @@ int main(void){
 		}
 	}
 	
-	for(x = 0; x < playerCount; x++){ // test print
+	for(x = 0; x < playerCount; x++){
 		printf("%s -> %.0f -> %d (%s)\n", player[x].name, player[x].life, player[x].slotNum, slotArr[player[x].slotNum-1]);
 	}
 	
