@@ -1,3 +1,9 @@
+/*
+ * abilitties.h
+ *
+ *  Created on: 5 Mar 2017
+ *      Author: kiowa
+ */
 #ifndef ABILITIES_H
 #define ABILITIES_H
 #include <stdio.h>
@@ -45,6 +51,24 @@ void abilities(int playerCount, struct players_ player[]){
                 	}
                 }
         	}
+    }
+    while(player[i].slotType == hill){
+    	if(player[i].Dexterity < 50){
+    		player[i].strength -= 10;
+    	}
+    	else if(player[i].Dexterity >= 60){
+    		player[i].strength +=10;
+    	}
+    }
+
+    while(player[i].slotType == city){
+    	if(player[i].smartness > 60){
+    		player[i].magic_Skills += 0;
+
+    	}
+    	else if(player[i].smartness <= 50){
+    		player[i].Dexterity -= 10;
+    	}
     }
 }
 
