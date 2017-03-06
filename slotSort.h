@@ -2,7 +2,8 @@
  * slots.h
  *
  *  Created on: 3 Mar 2017
- *      Author: kiowa + rónan
+ *	Edited on: 6 Mar 2017
+ *      Author: kiowa + lorenzo
  */
 #ifndef SLOTS_H
 #define SLOTS_H
@@ -37,30 +38,43 @@ void slotAssign(int playerCount, int slotCount,struct players_ player[], char sl
 
 	int i, j;
 	int x;
-	int temp[7];
+	int temp[playerCount];
+	int duplicate = 1;
 
 	srand(time(NULL));
 
-	for(i = 0; i < playerCount; i++){
-		x = rand() % slotCount;
-		for(j = 0; j < playerCount; j++){
-			while(temp[j] == x){
-				x = rand() % slotCount;
+	while(duplicate == 1){ // code from previous assignment that does not allow duplicates
+		for (i = 0; i < playerCount; i++){
+			x = rand() % slotCount;
+			temp[i] = x;
+		}
+		duplicate = 0;
+		for(i = 0; i < playerCount; i++){
+			for(j = i + 1; j < playerCount; j++){
+				if(temp[i] == temp[j]){
+					duplicate = 1; break; // if there are, duplicate remains 1
+				}
 			}
 		}
-		if(slotArr[x] == "ground"){
-			player[x].slotType = 0;
+		if(!duplicate){
+			break; // if not, while loop terminates
 		}
-		else if(slotArr[x] == "hill"){
-			player[x].slotType = 1;
-		}
-		else if(slotArr[x] == "city"){
-			player[x].slotType = 2;
-		}
-		player[i].slotNum = x + 1;
-		temp[i] = x;
 	}
-
+	
+	for(i = 0; i < playerCount; i++){
+		player[i].slotNum = temp[i] + 1;
+		
+		if(slotArr[i] == "ground"){
+			player[i].slotType = 0;
+		}
+		else if(slotArr[i] == "hill"){
+			player[i].slotType = 1;
+		}
+		else if(slotArr[i] == "city"){
+			player[i].slotType = 2;
+		}
+		
+	}
 }
-#endif
+#endif /* SLOTS_H */
 
