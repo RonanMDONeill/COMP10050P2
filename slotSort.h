@@ -22,7 +22,7 @@ void slotFill(int slotCount, char slotArr[20][100]){
 
 	srand(time(NULL)); // start random number generator with time from CPU as source
 
-	for(i = 0; i < slotCount; i++){
+	for(i = 0; i < slotCount + 1; i++){
 
 		r = rand() % 3; // random number between 0 and 2
 		switch(r){
