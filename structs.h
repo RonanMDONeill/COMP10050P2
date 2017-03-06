@@ -24,7 +24,7 @@ enum slotType{
     	int magic_Skills;
     	int Luck;
     	int Dexterity;
-    	int life;
+    	float life;
     	enum slotType slotType;
     	int slotNum;
 
