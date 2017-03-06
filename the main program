@@ -66,11 +66,11 @@ int main(){
         for(i=0;i<playerCount;i++){
         	printf("Player[%d]:\n%s\t", i+1, player[i].name);
         	if(player[i].class == Ogre){
-        		player[i].smartness = rand()%20;
+        		player[i].smartness = rand()%21;
         	    player[i].Luck = 50 - player[i].smartness;
-        	    player[i].strength = rand()%20;
+        	    player[i].strength = 80 - rand()%21;
         	    player[i].magic_Skills = 0;
-        	    player[i].Dexterity = 80 + rand()%20;
+        	    player[i].Dexterity = 80 + rand()%21;
         	    printf("(Ogre , %d)\n", life);
         	    printf("Smartness: %d\n", player[i].smartness);
         	    printf("Luck: %d\n",player[i].Luck);
@@ -81,11 +81,11 @@ int main(){
 
         			}
         	else if(player[i].class == Wizard){
-        		player[i].smartness =  90 + rand()%10;
-        		player[i].Luck = 50 + rand()%50;
-        		player[i].strength = rand()%20;
-        		player[i].magic_Skills = 80 + rand()%20;
-        		player[i].Dexterity = rand()%100;
+        		player[i].smartness =  90 + rand()%11;
+        		player[i].Luck = 50 + rand()%51;
+        		player[i].strength = rand()%21;
+        		player[i].magic_Skills = 80 + rand()%21;
+        		player[i].Dexterity = rand()%101;
         		printf("(Wizard, %d)\n", life);
         		printf("Smartness: %d\n", player[i].smartness);
         		printf("Luck: %d\n",player[i].Luck);
@@ -96,10 +96,10 @@ int main(){
         	}
         	else if(player[i].class == Elf){
         		player[i].smartness = 70 + rand()%30;
-        	    player[i].Luck = 60 + rand()%40;
-        	    player[i].strength = rand()%50;
-        	    player[i].magic_Skills = 50 + rand()%30;
-        	    player[i].Dexterity = rand()%100;
+        	    player[i].Luck = 60 + rand()%41;
+        	    player[i].strength = rand()%51;
+        	    player[i].magic_Skills = 50 + rand()%31;
+        	    player[i].Dexterity = rand()%101;
         		printf("(Elf, %d)\n", life);
         		printf("Smartness: %d\n", player[i].smartness);
                 printf("Luck: %d\n",player[i].Luck);
@@ -110,11 +110,11 @@ int main(){
         	}
         	else if(player[i].class == Human){
                 while(1){
-                	player[i].smartness = rand()%100;
-                	player[i].Luck = rand()%100;
-                	player[i].strength = rand()%100;
-                	player[i].magic_Skills = rand()%100;
-                	player[i].Dexterity = rand()%100;
+                	player[i].smartness = rand()%101;
+                	player[i].Luck = rand()%101;
+                	player[i].strength = rand()%101;
+                	player[i].magic_Skills = rand()%101;
+                	player[i].Dexterity = rand()%101;
                 	if(player[i].smartness + player[i].Luck +player[i].strength +player[i].magic_Skills +player[i].Dexterity < 300){
                 		break;
                 	}
