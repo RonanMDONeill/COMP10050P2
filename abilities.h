@@ -21,6 +21,7 @@ void abilities(int playerCount, struct players_ player[]){
         	player[i].strength = 80 - rand()%21;
         	player[i].magic_Skills = 0;
         	player[i].Dexterity = 80 + rand()%21;
+		player[i].life = 100;
          }
 
 
@@ -30,6 +31,7 @@ void abilities(int playerCount, struct players_ player[]){
         		player[i].strength = rand()%21;
         		player[i].magic_Skills = 80 + rand()%21;
         		player[i].Dexterity = rand()%101;
+			player[i].life = 100;
 
         	}
         else if(player[i].class == Elf){
@@ -38,6 +40,7 @@ void abilities(int playerCount, struct players_ player[]){
         	    player[i].strength = rand()%51;
         	    player[i].magic_Skills = 50 + rand()%31;
         	    player[i].Dexterity = rand()%101;
+		    player[i].life = 100;
         	}
         else if(player[i].class == Human){
                 while(1){
@@ -46,6 +49,7 @@ void abilities(int playerCount, struct players_ player[]){
                 	player[i].strength = rand()%101;
                 	player[i].magic_Skills = rand()%101;
                 	player[i].Dexterity = rand()%101;
+			player[i].life = 100;
                 	if(player[i].smartness + player[i].Luck +player[i].strength +player[i].magic_Skills +player[i].Dexterity < 300){
                 		break;
                 	}
