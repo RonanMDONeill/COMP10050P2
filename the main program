@@ -69,6 +69,11 @@ int main(void){
         for(i=0;i<playerCount;i++){
             printf("%s (%s, %d)\n", player[i].name,ClassEnum(player[i].class),life);
 
+            printf("smartness: %d\n",player[i].smartness);
+            printf("strength: %d\n",player[i].strength);
+            printf("magic_Skills: %d\n",player[i].magic_Skills);
+            printf("Luck: %d\n",player[i].Luck);
+            printf("Dexterity: %d\n",player[i].Dexterity);
 
 
             printf("%s is at %d", player[i].name, player[i].slotNum);
@@ -83,7 +88,10 @@ int main(void){
             }
             puts("");
 
+
+
         }
+
 
 }
 
@@ -96,7 +104,6 @@ const char *ClassEnum(class){
 		case Human: return "Human";
 		}
 	}
-
 
 
 
