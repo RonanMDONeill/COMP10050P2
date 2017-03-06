@@ -6,12 +6,15 @@
 #include "slots.h"
 #include <time.h>
 #include "abilities.h"
+#include "move.h"
 
 
 const char *ClassEnum(class);
+const char *TypeEnum(slotType);
 
 int main(void){
     int life = 100;
+    char slotArr[20][100];
 
     srand(time(NULL));
 	int i,playerCount, slotCount, choice;//merged both our variables//
@@ -58,9 +61,10 @@ int main(void){
 
         	puts("");//prints a space//
         }
-        slotFill(slotCount);
-        slotAssign(playerCount, slotCount, player);
+        slotFill(slotCount,slotArr);
+        slotAssign(playerCount, slotCount, player, slotArr);
         abilities( playerCount, player);
+
 
 
         //printing out the name and abilities//
@@ -76,17 +80,8 @@ int main(void){
             printf("Dexterity: %d\n",player[i].Dexterity);
 
 
-            printf("%s is at %d", player[i].name, player[i].slotNum);
-            if(player[i].slotType == ground){
-            	printf("  ground\n");
-            }
-            else if(player[i].slotType == hill){
-            	printf("  hill\n");
-            }
-            else if(player[i].slotType == city){
-            	printf("  city\n");
-            }
-            puts("");
+            printf("%s is at %d %s\n", player[i].name, player[i].slotNum, TypeEnum(player[i].slotType));
+
 
 
 
@@ -104,6 +99,17 @@ const char *ClassEnum(class){
 		case Human: return "Human";
 		}
 	}
+
+
+const char *TypeEnum(slotType){
+		switch(slotType){
+		case ground: return "Ground";
+		case hill: return "Hill";
+		case city: return "City";
+
+		}
+	}
+
 
 
 
