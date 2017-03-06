@@ -2,7 +2,7 @@
  *
  *	move.h
  *  Created on: 6 Mar 2017
- *	Author: rónan
+ *	Author: rÃ³nan
  *
  */
  
@@ -42,7 +42,7 @@ void movePlayer(int playerCount, int slotCount,struct players_ player[], char sl
 	}
 		
 	if(check1 == 1 && player[x].slotNum == 1){ // Slot ahead taken, also at first slot
-		printf("%s - would you like to:\n1. You cannot move forwards, slot taken by %s\n2. You cannot move backwards from here\n3. Attack closest player?\n", player[x].name, player[taken1].name);
+		printf("%s - would you like to:\n1. You cannot move forwards, slot taken by %s.\n2. You cannot move backwards from here.\n3. Attack closest player?\n", player[x].name, player[taken1].name);
 		scanf("%d", &opt);
 		while(opt != 3){ 
 			printf("That is not a valid option, try again: ");
@@ -50,7 +50,7 @@ void movePlayer(int playerCount, int slotCount,struct players_ player[], char sl
 		}
 	}
 	if(check2 == 1 && player[x].slotNum == slotCount){ // Slot behind taken, also at last slot
-		printf("%s - would you like to:\n1. You cannot move forwards from here\n2. You cannot move backwards, slot taken by %s\n3. Attack closest player?\n", player[x].name, player[taken2].name);
+		printf("%s - would you like to:\n1. You cannot move forwards from here.\n2. You cannot move backwards, slot taken by %s.\n3. Attack closest player?\n", player[x].name, player[taken2].name);
 		scanf("%d", &opt);
 		while(opt != 3){ 
 			printf("That is not a valid option, try again: ");
@@ -59,7 +59,7 @@ void movePlayer(int playerCount, int slotCount,struct players_ player[], char sl
 	}
 		
 	if(check1 == 1 && check2 != 1 && player[x].slotNum != 1){ // Slot ahead taken
-		printf("%s - would you like to:\n1. You cannot move forwards, slot taken by %s\n2. Move Backwards\n3. Attack closest player?\n", player[x].name, player[taken1].name);
+		printf("%s - would you like to:\n1. You cannot move forwards, slot taken by %s.\n2. Move Backwards?\n3. Attack closest player?\n", player[x].name, player[taken1].name);
 		scanf("%d", &opt);
 		while(opt < 2 || opt > 3){
 			printf("That is not a valid option, try again: ");
@@ -67,7 +67,7 @@ void movePlayer(int playerCount, int slotCount,struct players_ player[], char sl
 		}
 	}
 	if(check2 == 1 && check1 != 1 && player[x].slotNum != slotCount){ // Slot behind taken
-		printf("%s - would you like to:\n1. Move forwards? %s\n2. You cannot move backwards, slot taken by %s\n3. Attack closest player?\n", player[x].name, player[taken2].name);
+		printf("%s - would you like to:\n1. Move forwards?\n2. You cannot move backwards, slot taken by %s.\n3. Attack closest player?\n", player[x].name, player[taken2].name);
 		scanf("%d", &opt);
 		while(opt < 1 || opt > 3 || opt == 2){
 			printf("That is not a valid option, try again: ");
@@ -75,7 +75,7 @@ void movePlayer(int playerCount, int slotCount,struct players_ player[], char sl
 		}
 	}
 	if(check1 == 1 && check2 == 1 && player[x].slotNum != slotCount && player[x].slotNum != 1){ // Slot ahead and behind taken
-		printf("%s - would you like to:\n1. You cannot move forwards, slot taken by %s\n2. You cannot move backwards, slot taken by %s\n3. Attack closest player?\n", player[x].name, player[taken1].name, player[taken2].name);
+		printf("%s - would you like to:\n1. You cannot move forwards, slot taken by %s.\n2. You cannot move backwards, slot taken by %s.\n3. Attack closest player?\n", player[x].name, player[taken1].name, player[taken2].name);
 		scanf("%d", &opt);
 		while(opt != 3){ 
 			printf("That is not a valid option, try again: ");
