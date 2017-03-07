@@ -7,13 +7,17 @@
 #include <time.h>
 #include "abilities.h"
 #include "move.h"
+#include "attackMove.h"
 
 
 const char *ClassEnum(class);
 const char *TypeEnum(slotType);
 
 int main(void){
+	setvbuf(stdout, NULL, _IONBF, 0);
+
     char slotArr[20][100];
+
 
     srand(time(NULL));
 	int i,playerCount, slotCount, choice;//merged both our variables//
@@ -36,7 +40,7 @@ int main(void){
         	fflush(stdout);
         	scanf("%d", &choice);
         	//assigning a player class to the struct//
-
+            player[i].life = 100;
 
         	switch(choice){
 
@@ -58,11 +62,13 @@ int main(void){
         		}
         	}
 
+
         	puts("");//prints a space//
         }
         slotFill(slotCount,slotArr);
         slotAssign(playerCount, slotCount, player, slotArr);
         abilities( playerCount, player);
+        attack(playerCount,slotCount,slotArr);
 
 
 
@@ -70,16 +76,16 @@ int main(void){
 
 
         for(i=0;i<playerCount;i++){
-            printf("%s (%s, %.0f)\n", player[i].name,ClassEnum(player[i].class),player[i].life);
+            printf("%s (%s, %.2f)\n", player[i].name,ClassEnum(player[i].class),player[i].life);
 
-            printf("smartness: %d\n",player[i].smartness);
-            printf("strength: %d\n",player[i].strength);
-            printf("magic_Skills: %d\n",player[i].magic_Skills);
-            printf("Luck: %d\n",player[i].Luck);
-            printf("Dexterity: %d\n",player[i].Dexterity);
+//            printf("smartness: %d\n",player[i].smartness);
+//            printf("strength: %d\n",player[i].strength);
+//            printf("magic_Skills: %d\n",player[i].magic_Skills);
+//            printf("Luck: %d\n",player[i].Luck);
+//            printf("Dexterity: %d\n",player[i].Dexterity);
 
 
-            printf("%s is at %d %s\n", player[i].name, player[i].slotNum, TypeEnum(player[i].slotType));
+
 
 
 
@@ -108,7 +114,5 @@ const char *TypeEnum(slotType){
 
 		}
 	}
-
-
 
 
