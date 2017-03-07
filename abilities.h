@@ -2,7 +2,7 @@
  * abilitties.h
  *
  *  Created on: 5 Mar 2017
- *      Author: kiowa
+ *      Author: kiowa + rónan
  */
 #ifndef ABILITIES_H
 #define ABILITIES_H
@@ -11,17 +11,20 @@
 #include "structs.h"
 
 
+
 void abilities(int playerCount, struct players_ player[]){
 	int i;
-
+	setvbuf(stdout, NULL, _IONBF, 0);
+//assigning all the capabilities//
     for(i=0;i<playerCount;i++){
+
+
     	if(player[i].class == Ogre){
     		player[i].smartness = rand()%21;
         	player[i].Luck = 50 - player[i].smartness;
         	player[i].strength = 80 - rand()%21;
         	player[i].magic_Skills = 0;
         	player[i].Dexterity = 80 + rand()%21;
-		player[i].life = 100;
          }
 
 
@@ -31,7 +34,6 @@ void abilities(int playerCount, struct players_ player[]){
         		player[i].strength = rand()%21;
         		player[i].magic_Skills = 80 + rand()%21;
         		player[i].Dexterity = rand()%101;
-			player[i].life = 100;
 
         	}
         else if(player[i].class == Elf){
@@ -40,7 +42,6 @@ void abilities(int playerCount, struct players_ player[]){
         	    player[i].strength = rand()%51;
         	    player[i].magic_Skills = 50 + rand()%31;
         	    player[i].Dexterity = rand()%101;
-		    player[i].life = 100;
         	}
         else if(player[i].class == Human){
                 while(1){
@@ -49,14 +50,13 @@ void abilities(int playerCount, struct players_ player[]){
                 	player[i].strength = rand()%101;
                 	player[i].magic_Skills = rand()%101;
                 	player[i].Dexterity = rand()%101;
-			player[i].life = 100;
                 	if(player[i].smartness + player[i].Luck +player[i].strength +player[i].magic_Skills +player[i].Dexterity < 300){
                 		break;
                 	}
                 }
         	}
     }
-    while(player[i].slotType == hill){
+    while(player[i].slotType == hill && player[i].strength <=90){
     	if(player[i].Dexterity < 50){
     		player[i].strength -= 10;
     	}
@@ -65,9 +65,9 @@ void abilities(int playerCount, struct players_ player[]){
     	}
     }
 
-    while(player[i].slotType == city){
+    while(player[i].slotType == city && player[i].magic_Skills <=90 && player[i].Dexterity >= 10){
     	if(player[i].smartness > 60){
-    		player[i].magic_Skills += 0;
+    		player[i].magic_Skills += 10;
 
     	}
     	else if(player[i].smartness <= 50){
