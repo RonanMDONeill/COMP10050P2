@@ -3,7 +3,7 @@
  *
  *  Created on: 3 Mar 2017
  *	Edited on: 6 Mar 2017
- *      Author: kiowa + lorenzo
+ *      Author: kiowa + rónan
  */
 #ifndef SLOTS_H
 #define SLOTS_H
@@ -29,7 +29,7 @@ void slotFill(int slotCount, char slotArr[20][100]){
 			case 0: strcpy(slotArr[i], "ground\n"); break;
 			case 1: strcpy(slotArr[i], "hill\n"); break;
 			case 2: strcpy(slotArr[i], "city\n"); break;
-					
+
 		}
 	}
 }
@@ -60,10 +60,10 @@ void slotAssign(int playerCount, int slotCount,struct players_ player[], char sl
 			break; // if not, while loop terminates
 		}
 	}
-	
+
 	for(i = 0; i < playerCount; i++){
 		player[i].slotNum = temp[i] + 1;
-		
+
 		if(slotArr[i] == "ground"){
 			player[i].slotType = 0;
 		}
@@ -73,8 +73,7 @@ void slotAssign(int playerCount, int slotCount,struct players_ player[], char sl
 		else if(slotArr[i] == "city"){
 			player[i].slotType = 2;
 		}
-		
+
 	}
 }
 #endif /* SLOTS_H */
-
